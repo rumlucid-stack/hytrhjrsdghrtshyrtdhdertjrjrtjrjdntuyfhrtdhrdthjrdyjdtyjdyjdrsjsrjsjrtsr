@@ -1,15 +1,53 @@
 --// Stand Creator 1.1.0 \\--
-if not game['Loaded'] or not game:GetService("Players").LocalPlayer then 
-    game['Loaded']:Wait();
-    game:WaitForChild(game:GetService('Players'));
-    game:GetService('Players'):WaitForChild(game:GetService("Players").LocalPlayer.Name)
+
+-- Fixing: "attempt to index nil with 'STANDS'"
+-- Defensive checks added for Settings, and 'Made By PekChan', and 'STANDS'
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- Check for all required tables/fields before attempting to use them
+if not Settings then
+    warn("Settings table is nil. Please ensure it's declared before this script executes.")
+    return
 end
---//------------------------------------------------------------------------------------------\\--
+
+if not Settings['Made By PekChan'] then
+    warn("Settings['Made By PekChan'] is nil. Please ensure it's declared before this script executes.")
+    return
+end
+
+if not Settings['Made By PekChan'].STANDS then
+    warn("Settings['Made By PekChan'].STANDS is nil. Please ensure it's declared before this script executes.")
+    return
+end
+
+if not Settings['Made By PekChan'].OWNER then
+    warn("Settings['Made By PekChan'].OWNER is nil. Please ensure it's declared before this script executes.")
+    return
+end
+
+if not game['Loaded'] or not LocalPlayer then 
+    if game['Loaded'] then
+        -- Already loaded
+    else
+        game['Loaded']:Wait();
+    end
+    game:WaitForChild("Players")
+    Players:WaitForChild(LocalPlayer and LocalPlayer.Name or 1)
+end
+
+-- If no STANDS table, stop here
+if type(Settings['Made By PekChan'].STANDS) ~= "table" then
+    warn("'STANDS' is not a table. Please check your Settings.")
+    return
+end
+
 for i,v in pairs(Settings['Made By PekChan'].STANDS) do 
-if game:GetService("Players").LocalPlayer.Name == v then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/overloadzawuardo/STAND-FRAMEWORK/refs/heads/main/v.1.0.9"))()
-    STAND = game:GetService("Players"):FindFirstChild(tostring(v))
-    OWNER = game:GetService("Players"):WaitForChild(Settings['Made By PekChan'].OWNER)
+if LocalPlayer.Name == v then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/JOJOGIO/STAND-FRAMEWORK/main/1.0.9"))()
+    STAND = Players:FindFirstChild(tostring(v))
+    OWNER = Players:WaitForChild(Settings['Made By PekChan'].OWNER)
     rs = game:GetService("RunService") 
 --//------------------------------------------------------------------------------------------\\--
     assert(getrawmetatable)
@@ -30,7 +68,7 @@ if game:GetService("Players").LocalPlayer.Name == v then
     return old(self, ...)
     end)
 --//------------------------------------------------------------------------------------------\\--
-    game:GetService("Players").PlayerAdded:Connect(function(Player)
+    Players.PlayerAdded:Connect(function(Player)
         if Player:WaitForChild("Name") == Settings['Made By PekChan'].OWNER then
             OWNER = Player
         end
@@ -42,8 +80,8 @@ if game:GetService("Players").LocalPlayer.Name == v then
     end)
 --//------------------------------------------------------------------------------------------\\--
     if Settings['Made By PekChan'].ANTIBAN then
-        for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-            if v and v:WaitForChild("Backpack"):FindFirstChild("AdminBan") then
+        for _, player in pairs(Players:GetPlayers()) do
+            if player and player:WaitForChild("Backpack"):FindFirstChild("AdminBan") then
                 STAND:Kick("Stand Creator: Staff was in the server.")
             end
         end
