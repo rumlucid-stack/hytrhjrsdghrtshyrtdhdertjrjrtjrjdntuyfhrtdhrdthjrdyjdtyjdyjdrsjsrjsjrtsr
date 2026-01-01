@@ -5,7 +5,7 @@ if not game['Loaded'] or not game:GetService("Players").LocalPlayer then
     game:GetService('Players'):WaitForChild(game:GetService("Players").LocalPlayer.Name)
 end
 --//------------------------------------------------------------------------------------------\\--
-for i,v in pairs(Settings['Made By PekChan'].STARTSTAND) do 
+for i,v in pairs(Settings['Made By PekChan'].STANDS) do 
 if game:GetService("Players").LocalPlayer.Name == v then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/overloadzawuardo/STAND-FRAMEWORK/refs/heads/main/v.1.0.9"))()
     STAND = game:GetService("Players"):FindFirstChild(tostring(v))
