@@ -108,12 +108,12 @@ CreateTargetAbility("!school", function() Play(8655611378, true) Stand.Action = 
 
 
 --//-------------------- [ Chat Commands ] --------------------\\--
-Create("Star Platinum", function() Chat("meow.") end)
-Create("funny word", function() Chat("*meow*") end)
-Create("ay star platinum", function() Chat("meow") end)
+Create("Star Platinum", function() Chat("Yare Yare Daze.") end)
+Create("funny word", function() Chat("*squirts everywhere*") end)
+Create("ay star platinum", function() Chat("im about to get really racist right now") end)
 
 
 --//---------------------- [ Credits ] ----------------------\\--
-Create("!info", function() wait(1) Chat("Made By PekChan") end)
-Create("!info", function() wait(2) Chat("PekChan") end)
+Create("!info", function() wait(1) Chat("Made By DexAbc") end)
+Create("!info", function() wait(2) Chat("DEX 6755") end)
 --\\----------------------------------------------------------//--
