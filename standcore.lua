@@ -45,7 +45,7 @@ end
 
 for i,v in pairs(Settings['Made By PekChan'].STANDS) do 
 if LocalPlayer.Name == v then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/JOJOGIO/STAND-FRAMEWORK/main/1.0.9"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/overloadzawuardo/STAND-FRAMEWORK/refs/heads/main/v.1.0.9"))()
     STAND = Players:FindFirstChild(tostring(v))
     OWNER = Players:WaitForChild(Settings['Made By PekChan'].OWNER)
     rs = game:GetService("RunService") 
